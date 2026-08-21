@@ -1,0 +1,53 @@
+@keyframes pulseGold{
+
+0%{
+
+box-shadow:0 0 5px gold;
+
+}
+
+50%{
+
+box-shadow:0 0 25px gold;
+
+}
+
+100%{
+
+box-shadow:0 0 5px gold;
+
+}
+
+}
+
+.glow{
+
+animation:pulseGold 2s infinite;
+
+}
+
+.fade{
+
+animation:fade .5s ease;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}

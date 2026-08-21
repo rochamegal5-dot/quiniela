@@ -1,0 +1,2150 @@
+@import "tailwindcss";
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,
+body{
+
+width:100%;
+height:100%;
+
+overflow:hidden;
+
+font-family:
+Inter,
+Segoe UI,
+Arial,
+sans-serif;
+
+background:#050505;
+
+color:white;
+
+}
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+--verde:#00C853;
+
+--verde2:#009245;
+
+--dorado:#FFD700;
+
+--amarillo:#FFC107;
+
+--rojo:#ff3b30;
+
+--azul:#0099ff;
+
+--gris:#c7c7c7;
+
+--panel:#0d1117;
+
+--panel2:#161b22;
+
+--panel3:#1f2937;
+
+}
+
+/* =====================================================
+   FONDO
+===================================================== */
+
+body{
+
+background:
+
+radial-gradient(circle at top,#0d3519 0%,#081018 25%,#050505 70%),
+
+linear-gradient(
+180deg,
+#07110a,
+#020202
+);
+
+background-attachment:fixed;
+
+}
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+.dashboard{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  margin:0;
+  background:#000;
+}
+
+.carousel{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+.carousel-nav{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  padding:18px 0;
+}
+
+.carousel-dot{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.5);
+  background:transparent;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.carousel-dot.active{
+  background:#fff;
+  border-color:#fff;
+}
+
+.carousel-slides{
+  flex:1;
+  position:relative;
+}
+
+.carousel-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:scale(0.95);
+  transition:opacity .8s ease, transform .8s ease;
+  pointer-events:none;
+}
+
+.carousel-slide.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+.panel{
+  width:100%;
+  height:100%;
+  border-radius:0;
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(180deg,#050505,#0f0f0f);
+  padding:40px;
+  gap:28px;
+}
+
+.panel-title{
+  font-size:4rem;
+  font-weight:900;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#fff;
+}
+
+.panel-body{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:24px;
+}
+
+.panel-loading{
+  font-size:2rem;
+  font-weight:700;
+  text-align:center;
+  width:100%;
+}
+
+.cotizacion-grid,
+.result-list-small,
+.publicity-list,
+.tombola-grid {
+  display:grid;
+  gap:18px;
+}
+
+.cotizacion-grid{
+  grid-template-columns:repeat(3, minmax(180px, 1fr));
+}
+
+.cotizacion-item,
+.publicity-item,
+.result-row,
+.ball-big{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:24px;
+  border-radius:28px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);
+  min-height:140px;
+}
+
+.cotizacion-item span,
+.publicity-item strong,
+.result-header,
+.pozo-info{
+  font-size:1.5rem;
+  color:#ccc;
+}
+
+.cotizacion-item strong,
+.ball-big,
+.result-row strong{
+  font-size:3rem;
+  font-weight:900;
+  color:#fff;
+}
+
+.publicity-list{
+  grid-template-columns:repeat(2, minmax(280px, 1fr));
+}
+
+.publicity-item{
+  text-align:left;
+}
+
+.publicity-item strong{
+  font-size:2.2rem;
+  color:#fff;
+}
+
+.publicity-item p{
+  font-size:1.6rem;
+  color:#ddd;
+}
+
+.result-column{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+}
+
+.result-header{
+  font-size:2.4rem;
+  font-weight:900;
+  padding:18px 22px;
+  border-radius:18px;
+  background:rgba(255,255,255,.08);
+}
+
+.result-row{
+  grid-template-columns:1fr 2fr;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px;
+  border-radius:18px;
+  background:rgba(255,255,255,.04);
+}
+
+.ball-big{
+  font-size:3rem;
+  font-weight:900;
+  min-height:120px;
+  border-radius:24px;
+}
+
+.tombola-grid{
+  grid-template-columns:repeat(5, minmax(120px, 1fr));
+}
+
+.pozo-info{
+  font-size:2rem;
+  color:#fff;
+  text-align:center;
+  margin-top:16px;
+}
+
+.panel-cotizacion .panel-title { color:#00ff92; }
+.panel-publicidad .panel-title { color:#49b8ff; }
+.panel-quiniela .panel-title { color:#ffd700; }
+.panel-cinco .panel-title { color:#ff3b30; }
+.panel-tombola .panel-title { color:#9b5cff; }
+
+@media (max-width: 1200px) {
+  .carousel-nav { gap:10px; padding:12px 0; }
+  .panel { padding:28px; }
+  .panel-title { font-size:3rem; }
+  .cotizacion-item strong, .ball-big, .result-row strong { font-size:2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .cotizacion-grid, .publicity-list, .tombola-grid { grid-template-columns: 1fr; }
+  .panel { padding:22px; }
+  .panel-title { font-size:2.4rem; }
+}
+
+.header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:22px 35px;
+
+border-radius:25px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(0,120,40,.95),
+rgba(0,80,30,.95)
+);
+
+border:3px solid rgba(255,215,0,.25);
+
+box-shadow:
+
+0 0 40px rgba(0,255,100,.25),
+
+0 0 80px rgba(0,0,0,.45),
+
+inset 0 0 40px rgba(255,255,255,.05);
+
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo-area{
+
+display:flex;
+
+align-items:center;
+
+gap:25px;
+
+}
+
+.logo-area h1{
+
+font-size:56px;
+
+font-weight:900;
+
+letter-spacing:3px;
+
+color:white;
+
+text-shadow:
+
+0 0 20px rgba(255,255,255,.25),
+
+0 0 40px rgba(0,255,120,.4);
+
+}
+
+.logo-area h2{
+
+font-size:22px;
+
+margin-top:10px;
+
+letter-spacing:2px;
+
+font-weight:600;
+
+color:#ffe082;
+
+}
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status-area{
+
+display:flex;
+
+gap:18px;
+
+}
+
+.status-box{
+
+min-width:180px;
+
+padding:18px;
+
+border-radius:18px;
+
+background:
+
+rgba(255,255,255,.08);
+
+backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,.15);
+
+text-align:center;
+
+box-shadow:
+
+0 0 20px rgba(0,0,0,.25);
+
+}
+
+.status-box span{
+
+display:block;
+
+font-size:15px;
+
+text-transform:uppercase;
+
+letter-spacing:2px;
+
+color:#d0d0d0;
+
+margin-bottom:8px;
+
+}
+
+.status-box strong{
+
+font-size:30px;
+
+font-weight:900;
+
+color:white;
+
+}
+
+.online{
+
+color:#00ff66!important;
+
+text-shadow:
+
+0 0 12px #00ff66;
+
+}
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.principal{
+
+display:grid;
+
+grid-template-columns:
+
+1fr
+1fr
+1fr;
+
+gap:18px;
+
+flex:1;
+
+}
+
+.columna{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+/* =====================================================
+   PANELES CASINO
+===================================================== */
+
+.panel{
+
+display:flex;
+
+flex-direction:column;
+
+background:linear-gradient(180deg,#171717,#0b0b0b);
+
+border-radius:22px;
+
+overflow:hidden;
+
+border:2px solid rgba(255,215,0,.25);
+
+box-shadow:
+
+0 0 20px rgba(0,0,0,.50),
+
+0 0 35px rgba(0,255,120,.10),
+
+inset 0 0 20px rgba(255,255,255,.03);
+
+transition:.35s;
+
+height:100%;
+
+}
+
+.panel:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 0 40px rgba(255,215,0,.20),
+
+0 0 60px rgba(0,255,120,.18);
+
+}
+
+/* =====================================================
+   HEADER PANEL
+===================================================== */
+
+.panel-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 22px;
+
+}
+
+.panel-header h2{
+
+font-size:34px;
+
+font-weight:900;
+
+letter-spacing:2px;
+
+}
+
+.panel-header p{
+
+margin-top:4px;
+
+font-size:16px;
+
+color:white;
+
+opacity:.9;
+
+}
+
+.fecha-panel{
+
+font-size:18px;
+
+font-weight:700;
+
+background:rgba(255,255,255,.12);
+
+padding:10px 18px;
+
+border-radius:12px;
+
+}
+
+/* =====================================================
+   COLORES PANEL
+===================================================== */
+
+.casino-green{
+
+background:linear-gradient(90deg,#00a84f,#00863d);
+
+}
+
+.casino-red{
+
+background:linear-gradient(90deg,#d50000,#8e0000);
+
+}
+
+.casino-gold{
+
+background:linear-gradient(90deg,#b8860b,#ffd700);
+
+color:#111;
+
+}
+
+/* =====================================================
+   GRID INTERIOR
+===================================================== */
+
+.quiniela-grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:15px;
+
+padding:18px;
+
+flex:1;
+
+}
+
+/* =====================================================
+   TITULOS
+===================================================== */
+
+.titulo-vespertina{
+
+background:#ffb300;
+
+color:#111;
+
+padding:12px;
+
+border-radius:12px;
+
+font-size:22px;
+
+font-weight:900;
+
+text-align:center;
+
+margin-bottom:14px;
+
+}
+
+.titulo-nocturna{
+
+background:#1565c0;
+
+color:white;
+
+padding:12px;
+
+border-radius:12px;
+
+font-size:22px;
+
+font-weight:900;
+
+text-align:center;
+
+margin-bottom:14px;
+
+}
+
+/* =====================================================
+   FILAS
+===================================================== */
+
+.fila{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:10px 8px;
+
+margin-bottom:6px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,.03);
+
+transition:.25s;
+
+}
+
+.fila:hover{
+
+background:rgba(255,255,255,.08);
+
+}
+
+.puesto{
+
+width:46px;
+
+height:46px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:#111;
+
+font-size:20px;
+
+font-weight:900;
+
+border:2px solid rgba(255,255,255,.15);
+
+}
+
+/* =====================================================
+   NUMEROS LED
+===================================================== */
+
+.numero{
+
+font-size:34px;
+
+font-weight:900;
+
+letter-spacing:3px;
+
+padding-right:8px;
+
+}
+
+.amarillo{
+
+color:#ffd600;
+
+text-shadow:
+
+0 0 10px rgba(255,214,0,.7),
+
+0 0 25px rgba(255,214,0,.5);
+
+}
+
+.cyan{
+
+color:#00e5ff;
+
+text-shadow:
+
+0 0 10px rgba(0,229,255,.8),
+
+0 0 25px rgba(0,229,255,.4);
+
+}
+
+/* =====================================================
+   BOLILLAS
+===================================================== */
+
+.bolillas{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:12px;
+
+padding:12px;
+
+}
+
+.bola{
+
+width:60px;
+
+height:60px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:24px;
+
+font-weight:900;
+
+color:white;
+
+box-shadow:
+
+0 0 18px rgba(255,255,255,.15);
+
+transition:.25s;
+
+}
+
+.bola:hover{
+
+transform:scale(1.08);
+
+}
+
+.verde{
+
+background:radial-gradient(circle,#19ff7b,#00b84d,#007d33);
+
+}
+
+.roja{
+
+background:radial-gradient(circle,#ff6a6a,#ff2020,#b40000);
+
+}
+
+/* =====================================================
+   FOOTER PANEL
+===================================================== */
+
+.panel-footer{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:10px;
+
+padding:15px;
+
+background:#0f0f0f;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+font-size:16px;
+
+}
+
+.panel-footer strong{
+
+font-size:18px;
+
+color:#00ff66;
+
+}
+/* =====================================================
+   5 DE ORO
+===================================================== */
+
+.cinco-container{
+
+padding:25px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+flex:1;
+
+}
+
+.titulo-bolillas{
+
+text-align:center;
+
+font-size:24px;
+
+font-weight:900;
+
+letter-spacing:2px;
+
+color:#ffd700;
+
+margin:12px 0 20px;
+
+text-shadow:
+
+0 0 15px rgba(255,215,0,.6);
+
+}
+
+.bolillas-oro{
+
+display:flex;
+
+justify-content:center;
+
+gap:18px;
+
+margin-bottom:28px;
+
+flex-wrap:wrap;
+
+}
+
+.bola-oro{
+
+width:74px;
+
+height:74px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+font-weight:900;
+
+color:#222;
+
+background:
+
+radial-gradient(circle at 30% 30%,
+
+#fff9c4,
+
+#ffe082,
+
+#ffd700,
+
+#c69200);
+
+box-shadow:
+
+0 0 20px rgba(255,215,0,.8),
+
+inset -5px -5px 10px rgba(0,0,0,.25),
+
+inset 4px 4px 10px rgba(255,255,255,.5);
+
+transition:.25s;
+
+}
+
+.bola-oro:hover{
+
+transform:scale(1.08);
+
+}
+
+.bola-plata{
+
+width:66px;
+
+height:66px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:28px;
+
+font-weight:900;
+
+color:#222;
+
+background:
+
+radial-gradient(circle,
+
+#ffffff,
+
+#e5e5e5,
+
+#bcbcbc);
+
+box-shadow:
+
+0 0 18px rgba(255,255,255,.45);
+
+}
+
+.extra-area{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.extra-label{
+
+font-size:22px;
+
+font-weight:900;
+
+margin-bottom:12px;
+
+color:white;
+
+}
+
+.bola-extra{
+
+width:95px;
+
+height:95px;
+
+margin:auto;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:38px;
+
+font-weight:900;
+
+color:white;
+
+background:
+
+radial-gradient(circle,
+
+#ff8a80,
+
+#ff1744,
+
+#c4001d);
+
+box-shadow:
+
+0 0 35px rgba(255,0,60,.7);
+
+}
+
+.pozos{
+
+display:grid;
+
+gap:16px;
+
+margin-top:20px;
+
+}
+
+.pozo{
+
+padding:18px;
+
+border-radius:18px;
+
+background:
+
+linear-gradient(180deg,#181818,#0f0f0f);
+
+border:2px solid rgba(255,215,0,.35);
+
+text-align:center;
+
+box-shadow:
+
+0 0 18px rgba(255,215,0,.12);
+
+}
+
+.pozo span{
+
+display:block;
+
+font-size:16px;
+
+color:#cccccc;
+
+margin-bottom:6px;
+
+}
+
+.pozo strong{
+
+display:block;
+
+font-size:32px;
+
+font-weight:900;
+
+color:#00ff66;
+
+text-shadow:
+
+0 0 15px rgba(0,255,102,.4);
+
+}
+
+/* =====================================================
+   PUBLICIDAD
+===================================================== */
+
+.ads-panel{
+
+display:grid;
+
+grid-template-columns:2fr 3fr 1.2fr;
+
+gap:20px;
+
+height:260px;
+
+margin-top:5px;
+
+}
+
+.ads-card{
+
+height:100%;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:20px;
+
+padding:30px;
+
+text-align:center;
+
+box-shadow:
+
+0 0 25px rgba(0,0,0,.4);
+
+animation:pulse 3s infinite;
+
+}
+
+.ads-card h2{
+
+font-size:42px;
+
+font-weight:900;
+
+margin-bottom:20px;
+
+}
+
+.ads-card h3{
+
+font-size:30px;
+
+font-weight:700;
+
+}
+
+.video-placeholder{
+
+height:100%;
+
+border-radius:20px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+
+linear-gradient(180deg,#141414,#090909);
+
+border:3px dashed rgba(255,255,255,.2);
+
+font-size:72px;
+
+}
+
+.video-placeholder span{
+
+margin-top:20px;
+
+font-size:24px;
+
+text-align:center;
+
+line-height:1.5;
+
+padding:0 30px;
+
+}
+
+.ads-right{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(180deg,#161616,#090909);
+
+border:2px solid rgba(255,255,255,.08);
+
+}
+
+.qr{
+
+width:180px;
+
+height:180px;
+
+border-radius:18px;
+
+background:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:40px;
+
+font-weight:900;
+
+color:#111;
+
+margin-bottom:20px;
+
+}
+
+.ads-right h3{
+
+font-size:24px;
+
+text-align:center;
+
+margin-bottom:16px;
+
+}
+
+.ads-right h2{
+
+font-size:34px;
+
+font-weight:900;
+
+color:#00ff66;
+
+}
+
+/* =====================================================
+   TARJETAS PUBLICIDAD
+===================================================== */
+
+.verde{
+
+background:
+
+linear-gradient(135deg,
+
+#00d65b,
+
+#007a34);
+
+}
+
+.azul{
+
+background:
+
+linear-gradient(135deg,
+
+#1565c0,
+
+#00acc1);
+
+}
+
+.rojo{
+
+background:
+
+linear-gradient(135deg,
+
+#d50000,
+
+#ff5252);
+
+}
+
+.amarillo{
+
+background:
+
+linear-gradient(135deg,
+
+#ffc107,
+
+#ffe082);
+
+color:#111;
+
+}
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.02);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+@keyframes glow{
+
+0%{
+box-shadow:
+0 0 10px rgba(0,255,120,.15);
+}
+
+50%{
+box-shadow:
+0 0 35px rgba(0,255,120,.45),
+0 0 60px rgba(255,215,0,.20);
+}
+
+100%{
+box-shadow:
+0 0 10px rgba(0,255,120,.15);
+}
+
+}
+
+@keyframes shine{
+
+0%{
+background-position:-200px;
+}
+
+100%{
+background-position:600px;
+}
+
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-4px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+@keyframes blink{
+
+0%{
+opacity:1;
+}
+
+50%{
+opacity:.4;
+}
+
+100%{
+opacity:1;
+}
+
+}
+
+/* =====================================================
+   EFECTOS
+===================================================== */
+
+.panel{
+
+animation:glow 6s infinite;
+
+}
+
+.bola,
+.bola-oro,
+.bola-plata,
+.bola-extra{
+
+animation:float 3s ease-in-out infinite;
+
+}
+
+.online{
+
+animation:blink 1.5s infinite;
+
+}
+
+.logo-area h1{
+
+background:linear-gradient(
+90deg,
+#ffffff,
+#d7ffd7,
+#ffffff
+);
+
+background-size:400px;
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+animation:shine 8s linear infinite;
+
+}
+
+/* =====================================================
+   SCROLL
+===================================================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#111;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#00c853;
+
+border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#00e676;
+
+}
+
+/* =====================================================
+   SELECCION
+===================================================== */
+
+::selection{
+
+background:#00c853;
+
+color:white;
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1700px){
+
+.logo-area h1{
+
+font-size:46px;
+
+}
+
+.status-box{
+
+min-width:150px;
+
+}
+
+.panel-header h2{
+
+font-size:28px;
+
+}
+
+.numero{
+
+font-size:28px;
+
+}
+
+.bola{
+
+width:52px;
+height:52px;
+
+font-size:22px;
+
+}
+
+.bola-oro{
+
+width:66px;
+height:66px;
+
+font-size:26px;
+
+}
+
+}
+
+@media(max-width:1450px){
+
+.principal{
+
+grid-template-columns:1fr;
+
+overflow:auto;
+
+}
+
+.ads-panel{
+
+grid-template-columns:1fr;
+
+height:auto;
+
+}
+
+.status-area{
+
+flex-wrap:wrap;
+
+justify-content:flex-end;
+
+}
+
+.header{
+
+flex-direction:column;
+
+gap:20px;
+
+align-items:flex-start;
+
+}
+
+}
+
+/* =====================================================
+   SOMBRAS EXTRA
+===================================================== */
+
+.panel-header{
+
+box-shadow:
+
+inset 0 -2px rgba(255,255,255,.08);
+
+}
+
+.status-box{
+
+transition:.3s;
+
+}
+
+.status-box:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 0 30px rgba(255,215,0,.20);
+
+}
+
+.pozo:hover{
+
+transform:scale(1.02);
+
+transition:.3s;
+
+}
+
+.ads-card{
+
+transition:.4s;
+
+}
+
+.ads-card:hover{
+
+transform:scale(1.03);
+
+}
+
+/* =====================================================
+   TITULOS
+===================================================== */
+
+h1,h2,h3{
+
+user-select:none;
+
+}
+
+strong{
+
+font-weight:900;
+
+}
+
+/* =====================================================
+   FIN
+===================================================== */
+.ball{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:50%;
+
+font-weight:900;
+
+transition:.3s;
+
+}
+
+.ball.sm{
+
+width:52px;
+
+height:52px;
+
+font-size:22px;
+
+}
+
+.ball.md{
+
+width:64px;
+
+height:64px;
+
+font-size:28px;
+
+}
+
+.ball.lg{
+
+width:78px;
+
+height:78px;
+
+font-size:34px;
+
+}
+
+.ball.gold{
+
+background:radial-gradient(circle,#fff6b5,#ffd700,#c79600);
+
+color:#222;
+
+box-shadow:0 0 25px gold;
+
+}
+
+.ball.silver{
+
+background:radial-gradient(circle,#ffffff,#dcdcdc,#aaaaaa);
+
+color:#111;
+
+box-shadow:0 0 20px silver;
+
+}
+
+.ball.green{
+
+background:radial-gradient(circle,#00ff88,#00c853,#007a33);
+
+color:white;
+
+}
+
+.ball.red{
+
+background:radial-gradient(circle,#ff7777,#ff1744,#b00020);
+
+color:white;
+
+box-shadow:0 0 30px red;
+
+}
+
+.ball:hover{
+
+transform:scale(1.08);
+
+}
+/*=========================
+TICKER
+=========================*/
+
+.ticker{
+
+height:60px;
+
+overflow:hidden;
+
+background:
+
+linear-gradient(
+90deg,
+#009245,
+#00c853,
+#009245
+);
+
+border-top:3px solid gold;
+
+display:flex;
+
+align-items:center;
+
+}
+
+.ticker-track{
+
+white-space:nowrap;
+
+font-size:28px;
+
+font-weight:900;
+
+color:white;
+
+padding-left:100%;
+
+animation:tickerMove 35s linear infinite;
+
+text-shadow:
+
+0 0 12px rgba(255,255,255,.4);
+
+}
+
+@keyframes tickerMove{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+100%{
+
+transform:translateX(-100%);
+
+}
+
+}
+.status-box small{
+
+display:block;
+
+margin-top:6px;
+
+font-size:14px;
+
+font-weight:600;
+
+color:#d6d6d6;
+
+letter-spacing:1px;
+
+}
+.media-player{
+
+width:100%;
+
+height:100%;
+
+overflow:hidden;
+
+border-radius:20px;
+
+background:black;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+position:relative;
+
+}
+
+.media-player video{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+.media-player img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+animation:fadeMedia .7s;
+
+}
+
+.loading-media{
+
+font-size:32px;
+
+font-weight:700;
+
+color:white;
+
+}
+
+@keyframes fadeMedia{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+.animated-number{
+
+    transition:.4s;
+
+}
+
+.flash{
+
+    animation:flash .9s ease;
+
+}
+
+@keyframes flash{
+
+0%{
+
+transform:scale(.7);
+
+opacity:0;
+
+}
+
+40%{
+
+transform:scale(1.3);
+
+color:#ffd700;
+
+text-shadow:
+
+0 0 10px #ffd700,
+
+0 0 30px orange,
+
+0 0 60px gold;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+.header-extra{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:12px;
+    flex-wrap:wrap;
+}
+
+.nextdraw,
+.last-update,
+.server-status{
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,215,0,.35);
+
+    color:white;
+
+    font-weight:700;
+
+    box-shadow:0 0 15px rgba(255,215,0,.15);
+}
+
+.nextdraw strong{
+    color:#FFD700;
+    margin-left:8px;
+}
+/* ============================
+   VIDEO PUBLICIDAD
+============================ */
+
+.ads-center{
+    width:100%;
+    height:100%;
+    display:flex;
+    overflow:hidden;
+    border-radius:20px;
+    background:#000;
+}
+
+.media-player{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    border-radius:20px;
+    background:#000;
+}
+
+.media-player video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.media-player img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.media-player video::-webkit-media-controls{
+    display:none !important;
+}
+
+.loading-media{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:28px;
+}
+
+/* =====================================================
+   PUBLICIDAD MEGAL - VIDEO
+===================================================== */
+
+.panel-publicidad {
+  padding: 28px;
+  gap: 18px;
+  background: radial-gradient(circle at top, #063d1d 0%, #050505 58%);
+}
+
+.publicity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.publicity-subtitle {
+  margin-top: 8px;
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
+  font-weight: 700;
+  color: #baffcf;
+}
+
+.publicity-price {
+  min-width: 280px;
+  padding: 16px 24px;
+  border-radius: 18px;
+  text-align: center;
+  background: linear-gradient(135deg, #00c853, #007a33);
+  border: 2px solid rgba(255,215,0,.55);
+  box-shadow: 0 0 30px rgba(0,200,83,.28);
+}
+
+.publicity-price span {
+  display: block;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.publicity-price strong {
+  display: block;
+  margin-top: 4px;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  color: #ffd700;
+  text-shadow: 0 0 16px rgba(255,215,0,.55);
+}
+
+.publicity-video-body {
+  min-height: 0;
+}
+
+.media-player {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #000;
+  border: 2px solid rgba(255,215,0,.22);
+  box-shadow: 0 0 45px rgba(0,0,0,.55), 0 0 30px rgba(0,200,83,.12);
+}
+
+.media-player video,
+.media-player img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+.media-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(0,0,0,.82);
+  text-align: center;
+}
+
+.media-error strong {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #00ff66;
+}
+
+.media-error span {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .publicity-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .publicity-price {
+    min-width: 0;
+  }
+}
+
+.tombola-panel-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: 24px;
+  overflow: hidden;
+}
+
+.tombola-section {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tombola-grid {
+  grid-template-columns: repeat(5, minmax(70px, 1fr));
+  align-content: start;
+}
+
+@media (max-width: 1000px) {
+  .tombola-panel-body {
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+}
